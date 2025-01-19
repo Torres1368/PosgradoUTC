@@ -1,0 +1,265 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="POSG_V1.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title runat="server">UTC | POSGRADOS</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+
+    <!-- bootstrap css -->
+   <link rel="stylesheet" href="<%= ResolveUrl("~/css/bootstrap.min.css") %>" />
+    <!-- site css -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/style.css") %>" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/responsive.css") %>" />
+
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/bootstrap-select.css") %>" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/perfect-scrollbar.css") %>" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/custom.css") %>" />
+    <!-- estilos css -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/css/estilos.css") %>" />     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+    <!-- Importación de jQuery (asegúrate de que esta es la correcta) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <!-- CHART js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+       <!-- SCRIPT SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Importación de DataTables -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <!-- Extensiones de DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!-- Archivo de idioma en español -->
+    <script src="https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"></script>
+    <%-- INGRESO AQUI DE LAS CDNS PARA EL DEBUG 1 --%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
+
+    <%--iconos--%>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+   <body class="dashboard dashboard_1">
+    <div class="container-fluid body-content">
+                    <form id="form1" runat="server">
+
+                        <div class="full_container">
+                            <div class="inner_container">
+                                <!-- Sidebar  -->
+                                <nav id="sidebar">
+                                    <div class="sidebar_blog_1">
+                                        <div class="sidebar-header">
+                                            <div class="logo_section">
+                                                <a href="#">
+                                                    <img class="logo_icon img-responsive" src="<%= ResolveUrl("~/images/logo/logo_utc.png") %>" alt="#" />
+                                                </a>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="sidebar_user_info">
+                                            <div class="icon_setting"></div>
+                                            <div class="user_profle_side">
+                                                <div class="user_img">
+                                                     <img class="img-responsive" src="<%= Session["userImage"] != null ? ResolveUrl(Session["userImage"].ToString()) : ResolveUrl("~/images/logo/usu.png") %>" alt="Foto de usuario" />
+
+                                                </div>
+                                                <div class="user_info" runat="server">
+                                                     <h6 runat="server"><%= $"{Session["userName"]} {Session["userLastName"]}" %></h6>
+                                                    <%--<h6 runat="server"><%= Session["userId"] %></h6>--%>
+                                                    <asp:Label ID="lblUserId" runat="server" ></asp:Label>
+                                                    <p><span class="online_animation"></span>&nbsp; En linea</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sidebar_blog_2">
+                                        <h4>SISTEMA DE POSGRADOS</h4>
+                                        <ul class="list-unstyled components">
+
+                                            <%--<li class="active">
+                                                <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i><span>Dashboard</span></a>
+                                                <ul class="collapse list-unstyled" id="dashboard">
+                                                    <li>
+                                                        <a href="dashboard.html">> <span>Default Dashboard</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
+                                                    </li>
+                                                </ul>
+                                            </li>--%>
+
+                                            <li><a runat="server" href="~/POSG/Menu.aspx"><i class="fa fa-home orange_color"></i><span>INICIO</span></a></li>
+                                            <li><a runat="server" href="~/POSG/POSG_DetalleIns.aspx"><i class="fa fa-graduation-cap yellow_color"></i><span>Estudiantes</span></a></li>
+                                            <li><a href="POSG_NotasEstudiantes.aspx"> <span>Notas de estudiantes</span></a></li>
+                                            <li>
+                                                <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-alt purple_color"></i><span>Secretaría Académica</span></a>
+                                                <ul class="collapse list-unstyled" id="element">
+                                                    <li><a href="POSG_Inscripciones.aspx"> <span>INSCRIPCION</span></a></li>
+                                                    <li><a href="POSG_ListadoIns.aspx"> <span>LISTADO DE INSCRITOS</span></a></li>
+                                                     <li><a href="POSG_NOTAS.aspx"> <span>NOTAS ESTUDIANTES</span></a></li>
+                                                    <li><a href="POSG_NotasDefensa.aspx"> <span>NOTAS DE DEFENSA</span></a></li>
+                                                    <li><a href="POSG_ActasDefensa.aspx"> <span>ACTAS DE DEFENSA</span></a></li>
+                                                    <li><a href="POSG_ActasGrado.aspx"> <span>ACTAS DE GRADO</span></a></li>
+                                                    
+                                                     
+                                                    
+                                                </ul>
+                                            </li>
+                                            <li><a runat="server" href="~/POSG/POSG_Docente.aspx"><i class="fa fa-table purple_color2"></i><span>Docente</span></a></li>
+                    
+                                            <li><a href="Dashboard.aspx"> <i class="fa fa-bar-chart-o green_color"></i><span>Dashboard</span></a></li>
+                                            
+                                            
+                                           <%-- <li>
+                                                <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i><span>Inscripción</span></a>
+                                                <ul class="collapse list-unstyled" id="apps">
+                                                    <li><a href="email.html">> <span>Por definir</span></a></li>
+                                                    <li><a href="calendar.html">> <span>Por definir</span></a></li>
+                                                    <li><a href="media_gallery.html">> <span>Por definir</span></a></li>
+                                                </ul>
+                                            </li>--%>
+                                            <%--<li><a runat="server" href="~/Pages/Actas_grado.aspx"><i class="fa fa-briefcase blue1_color"></i><span>Actas de grado</span></a></li>--%>
+                                            <%--<li>
+                                                <a href="contact.html">
+                                                    <i class="fa fa-paper-plane red_color"></i><span>Contactos</span></a>
+                                            </li>--%>
+                                            <%--<li class="active">
+                                                <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i><span>Additional Pages</span></a>
+                                                <ul class="collapse list-unstyled" id="additional_page">
+                                                    <li>
+                                                        <a href="profile.html">> <span>Profile</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="project.html">> <span>Projects</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="login.html">> <span>Login</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="404_error.html">> <span>404 Error</span></a>
+                                                    </li>
+                                                </ul>
+                                            </li>--%>
+                                            <%--<li><a href="map.html"><i class="fa fa-map purple_color2"></i><span>Map</span></a></li>
+                                            <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i><span>Charts</span></a></li>
+                                            <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i><span>Settings</span></a></li>--%>
+                                        </ul>
+                                    </div>
+                                </nav>
+                                <!-- end sidebar -->
+                                <!-- right content -->
+                                <div id="content">
+                                    <!-- topbar -->
+                                    <div class="topbar">
+                                        <nav class="navbar navbar-expand-lg navbar-light">
+                                            <div class="full">
+                                                <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                                                <div class="logo_section">
+                                                    <a href="#">
+                                                        <img class="img-responsive" src="<%= ResolveUrl("~/images/logo/logou.png") %>" alt="#" /></a>
+
+
+                                                </div>
+                                                <div class="right_topbar">
+                                                    <div class="icon_info">
+                                                        <ul>
+                                  
+                                                        </ul>
+                                                        <ul class="user_profile_dd">
+                                                            <li>
+                                                                <!-- NOMB -->
+                                                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <img class="img-responsive rounded-circle" src="<%= Session["userImage"] != null ? ResolveUrl(Session["userImage"].ToString()) : ResolveUrl("~/images/logo/usu.png") %>" alt="Foto de usuario" />
+                                                                    <span class="name_user"><%= Session["UserNombreCompleto"] %></span>
+                                                                </a>
+                                                                <div class="dropdown-menu">
+                                                                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" CssClass="navbar-link">Cerrar Sesión</asp:LinkButton>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <!-- end topbar -->
+
+                                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                        <h1>Contenido principal</h1>
+
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </div>
+                        </div>
+    </form>
+
+
+                           <!------------------------------- LIBRERIAS------------- -->
+
+       <!-- wow animation -->
+        <script src="<%= ResolveUrl("~/js/popper.min.js") %>" defer></script>
+        <!-- jQuery -->
+        <script src="<%= ResolveUrl("~/js/bootstrap.min.js") %>" defer></script>
+        <!-- wow animation -->
+        <script src="<%= ResolveUrl("~/js/animate.js") %>" defer></script>
+        <!-- select country -->
+        <script src="<%= ResolveUrl("~/js/bootstrap-select.js") %>" defer></script>
+        <!-- owl carousel -->
+        <script src="<%= ResolveUrl("~/js/owl.carousel.js") %>" defer></script>
+        <!-- chart js -->
+        <script src="<%= ResolveUrl("~/js/Chart.min.js") %>" defer></script>
+        <script src="<%= ResolveUrl("~/js/Chart.bundle.min.js") %>" defer></script>
+        <script src="<%= ResolveUrl("~/js/utils.js") %>" defer></script>
+        <script src="<%= ResolveUrl("~/js/analyser.js") %>" defer></script>
+        <!-- nice scrollbar -->
+        <script src="<%= ResolveUrl("~/js/perfect-scrollbar.min.js") %>" defer></script>
+        <script>
+            var ps = new PerfectScrollbar('#sidebar');
+        </script>
+        <!-- custom js -->
+        <script src="<%= ResolveUrl("~/js/custom.js") %>" defer></script>
+
+    </div>
+    
+<script type="text/javascript">
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        }, false);
+    </script>
+       
+
+</body>
+</html>

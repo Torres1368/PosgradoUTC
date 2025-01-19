@@ -1,0 +1,32 @@
+﻿.custom-table1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table1 thead {
+    background-color: #343a40;
+    color: black;
+}
+
+.custom-table1 th, .custom-table td {
+    padding: 12px;
+    border: 1px solid grey;
+}
+
+.custom-table tbody tr:nth-child(even) {
+}
+
+.custom-table tbody tr:hover {
+    background-color: #C8E7ED !important; /* Colores C8E7ED #C5E5E3 D1E9F6 */
+}
+
+
+.custom-table1 tr{
+    color: black;
+}
+
+
+.custom-table1 th{
+    background-color: #102C57;
+    color: #f2f2f2;
+}
